@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -31,14 +32,11 @@ public class Componente implements Serializable {
 	@Column(name = "charge")
 	int charge;
 	
-	@Column(name = "charge_formula")
+	@Column(name = "charged_formula")
 	String charge_formula;
 	
-	@Column(name = "id_kegg")
-	String id_kegg;
-	
-	//@Column(name = "structure")
-	//Blob structure;
+	@Column(name = "structure")
+	Blob structure;
 	
 	@OneToMany(mappedBy = "componente")
 	private Collection<ReacaoTemComponentes> rhcs;
@@ -47,7 +45,7 @@ public class Componente implements Serializable {
 		
 	}
 	
-	public Componente(String _abbreviation, String _name, String _formula, int _charge, String _charge_formula, String _id_kegg) {
+	public Componente(String _abbreviation, String _name, String _formula, int _charge, String _charge_formula, Blob _structure) {
 		super();
 		//this.id = _id;
 		this.abbreviation = _abbreviation;
@@ -55,8 +53,7 @@ public class Componente implements Serializable {
 		this.formula = _formula;
 		this.charge = _charge;
 		this.charge_formula = _charge_formula;
-		this.id_kegg = _id_kegg;
-		//this.structure = _structure;
+		this.structure = _structure;
 	}
 	
 	public String getAbbreviation() {
@@ -99,12 +96,20 @@ public class Componente implements Serializable {
 		this.charge_formula = charge_formula;
 	}
 
-	public String getId_kegg() {
-		return id_kegg;
+	public Blob getStructure() {
+		return structure;
 	}
 
-	public void setId_kegg(String id_kegg) {
-		this.id_kegg = id_kegg;
+	public void setStructure(Blob structure) {
+		this.structure = structure;
+	}
+
+	public Collection<ReacaoTemComponentes> getRhcs() {
+		return rhcs;
+	}
+
+	public void setRhcs(Collection<ReacaoTemComponentes> rhcs) {
+		this.rhcs = rhcs;
 	}
 
 	@Override

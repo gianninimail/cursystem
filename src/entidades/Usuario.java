@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -17,6 +20,7 @@ import util.EntidadeBase;
 
 @Entity
 @Table(name = "user")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario implements Serializable, EntidadeBase {
 
 	private static final long serialVersionUID = 1L;
@@ -42,12 +46,12 @@ public class Usuario implements Serializable, EntidadeBase {
 	@Column(name = "email")
 	String email;
 	
-	@Column(name = "date_registration")
+	@Column(name = "dt_register")
 	@Temporal(TemporalType.DATE)
 	Date dataCadastro;
 	
-	@Column(name = "type_user")
-	int tipoUsuario;
+	@JoinColumn(name = "type_user_id")
+	private TipoUsuario tipoUsuario;
 	
 	public Usuario() {
 		this.id = new Long(0);

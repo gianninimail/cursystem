@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -29,19 +30,13 @@ public class Reacao implements Serializable {
 	@Column(name = "equation", length = 1500)
 	private String equation;
 	
-	@Column(name = "id_kegg")
-	private String id_kegg;
-	
-	//@Column(name = "link")
-	//String link;
-	
-	//@Column(name = "structure")
-	//Blob structure;
+	@Column(name = "structure")
+	Blob structure;
 	
 	@Column(name = "reverse")
 	private boolean reverse;
 	
-	@Column(name = "genes_association", length = 1500)
+	@Column(name = "gene_association", length = 1500)
 	private String associacao;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reacao")
@@ -57,16 +52,15 @@ public class Reacao implements Serializable {
 		
 	}
 	
-	public Reacao(String _abbreviation, String _name, String _definition, String _equation, String _id_kegg, boolean _reverse) {
+	public Reacao(String _abbreviation, String _name, String _definition, String _equation, boolean _reverse, Blob _structure) {
 		super();
 		//this.id = _id;
 		this.abbreviation = _abbreviation;
 		this.name = _name;
 		this.definition = _definition;
 		this.equation = _equation;
-		this.id_kegg = _id_kegg;
 		this.reverse = _reverse;
-		//this.link = _link;
+		this.structure = _structure;
 	}
 
 	public String getAbbreviation() {
@@ -101,7 +95,6 @@ public class Reacao implements Serializable {
 		this.equation = equation;
 	}
 
-	/*
 	public Blob getStructure() {
 		return structure;
 	}
@@ -109,7 +102,6 @@ public class Reacao implements Serializable {
 	public void setStructure(Blob structure) {
 		this.structure = structure;
 	}
-	*/
 
 	public boolean isReverse() {
 		return reverse;
@@ -117,14 +109,6 @@ public class Reacao implements Serializable {
 
 	public void setReverse(boolean reverse) {
 		this.reverse = reverse;
-	}
-
-	public String getId_kegg() {
-		return id_kegg;
-	}
-
-	public void setId_kegg(String id_kegg) {
-		this.id_kegg = id_kegg;
 	}
 
 	public String getAssociacao() {

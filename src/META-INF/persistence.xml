@@ -14,6 +14,12 @@
 		<class>entidades.ReconstrucaoTemReacoes</class>
 		<class>entidades.Enzima</class>
 		<class>entidades.EnzimasHabilitaReacoes</class>
+		<class>entidades.Desafio</class>
+		<class>entidades.Especialidade</class>
+		<class>entidades.Status</class>
+		<class>entidades.Resposta</class>
+		<class>entidades.Pesquisador</class>
+		<class>entidades.Comentario</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ccbh4851system"/>
 			<property name="javax.persistence.jdbc.user" value="ccbh4851"/>
