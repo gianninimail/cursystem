@@ -7,7 +7,7 @@ import entidades.Comentario;
 
 public interface ComentarioINTdao {
 
-void Inserir(Comentario _comentario) throws SQLException;
+	void Inserir(Comentario _comentario) throws SQLException;
 	
 	void Editar(Comentario _comentario) throws SQLException;
 

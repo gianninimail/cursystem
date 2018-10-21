@@ -20,6 +20,7 @@
 		<class>entidades.Resposta</class>
 		<class>entidades.Pesquisador</class>
 		<class>entidades.Comentario</class>
+		<class>entidades.GeneAssociacao</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ccbh4851system"/>
 			<property name="javax.persistence.jdbc.user" value="ccbh4851"/>
