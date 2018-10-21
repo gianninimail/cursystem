@@ -24,20 +24,17 @@ public class Gene implements Serializable {
 	@Column(name = "id")
 	private String id;
 	
-	@Column(name = "seq_nuc")
+	@Column(name = "seq_nucleotide")
 	private String seq_nuc;
-	
-	@Column(name = "name")
-	private String name;
 	
 	@Column(name = "reference_id")
 	private String reference_id;
 	
-	@Column(name = "has_grp")
+	@Column(name = "has_gpr")
 	private boolean tem_grp;
 	
 	@ManyToMany
-	@JoinTable(name = "genomas_genes", joinColumns = @JoinColumn(name = "gene_id"), inverseJoinColumns = @JoinColumn(name = "genoma_id"))
+	@JoinTable(name = "genome_has_gene", joinColumns = @JoinColumn(name = "gene_id"), inverseJoinColumns = @JoinColumn(name = "genome_id"))
 	private Set<Genoma> genomas;
 	
 	public Gene() {
@@ -70,14 +67,6 @@ public class Gene implements Serializable {
 
 	public String getReference_id() {
 		return reference_id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public void setReference_id(String reference_id) {

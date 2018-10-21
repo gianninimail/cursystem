@@ -38,12 +38,12 @@ public class EnzimasHabilitaReacoes implements Serializable {
 	
 	@Id
 	@ManyToOne
-	@JoinColumn(name = "proteina_id")
+	@JoinColumn(name = "protein_id")
 	Proteina proteina;
 	
 	@Id
 	@ManyToOne
-	@JoinColumn(name = "enzima_id")
+	@JoinColumn(name = "enzime_id")
 	private Enzima enzima;
 
 	public Reacao getReacao() {

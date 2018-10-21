@@ -38,16 +38,15 @@ public class Reconstrucao implements Serializable {
 	private String version;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name = "date")
+	@Column(name = "dt_execution")
 	private Date data;
 	
-	
 	@ManyToOne
-	@JoinColumn(name = "genoma_id")
+	@JoinColumn(name = "genome_id")
 	private Genoma genoma;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "researcher_id")
 	private Usuario user;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reconstrucao")

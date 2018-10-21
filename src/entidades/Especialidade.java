@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import util.EntidadeBase;
 
 @Entity
-@Table(name = "specialty")
+@Table(name = "speciality")
 public class Especialidade implements Serializable, EntidadeBase {
 
 	private static final long serialVersionUID = 1L;

@@ -47,7 +47,7 @@ public class Resposta extends ModeloBase {
 	@JoinColumn(name = "researcher_id")
 	Pesquisador pesquisador;
 	
-	@Column(name = "date_register")
+	@Column(name = "dt_register")
 	Date dtCadastro;
 	
 	@Column(name = "new_equation")

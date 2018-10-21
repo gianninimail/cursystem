@@ -5,18 +5,20 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import util.EntidadeBase;
+import util.TipoUsuario;
 
 @Entity
 @Table(name = "user")
@@ -50,14 +52,15 @@ public class Usuario implements Serializable, EntidadeBase {
 	@Temporal(TemporalType.DATE)
 	Date dataCadastro;
 	
-	@JoinColumn(name = "type_user_id")
-	private TipoUsuario tipoUsuario;
+	@Column(name = "type_user")
+	@Enumerated(EnumType.STRING)
+	TipoUsuario tipoUsuario;
 	
 	public Usuario() {
 		this.id = new Long(0);
 	}
 	
-	public Usuario (Long id, String nome, String login, String senha, String tel, String email, Date dtCadastro, int tipoUsuario) {
+	public Usuario (Long id, String nome, String login, String senha, String tel, String email, Date dtCadastro, TipoUsuario tipoUsuario) {
 		this.id = id;
 		this.nome = nome;
 		this.login = login;
@@ -123,12 +126,12 @@ public class Usuario implements Serializable, EntidadeBase {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public int getTipoUsuario() {
+
+	public TipoUsuario getTipoUsuario() {
 		return tipoUsuario;
 	}
 
-	public void setTipoUsuario(int tipoUsuario) {
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
 

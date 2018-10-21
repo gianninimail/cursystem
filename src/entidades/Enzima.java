@@ -32,7 +32,7 @@ public class Enzima implements Serializable {
 	@Column(name = "reaction_kegg")
 	private String reaction_kegg;
 	
-	@Column(name = "substract")
+	@Column(name = "substrate")
 	private String substract;
 	
 	@Column(name = "product")

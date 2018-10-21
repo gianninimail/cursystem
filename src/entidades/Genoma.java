@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "genoma")
+@Table(name = "genome")
 public class Genoma implements Serializable {
 	
 	/**

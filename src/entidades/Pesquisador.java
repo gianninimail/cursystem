@@ -1,15 +1,15 @@
 package entidades;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "researcher")
+@PrimaryKeyJoinColumn(name = "id")
 public class Pesquisador extends Usuario {
 
 	private static final long serialVersionUID = 1L;
@@ -25,7 +25,7 @@ public class Pesquisador extends Usuario {
 		super();
 		this.especialidade = new Especialidade();
 	}
-	
+	/*
 	public Pesquisador(Long id, String nome, String login, String senha, String tel, String email, Date dtCadastro, String instituto, Especialidade especialidade, int tipoUsuario) {
 		super(id, nome, login, senha, tel, email, dtCadastro, tipoUsuario);
 		this.instituto = instituto;
@@ -36,7 +36,7 @@ public class Pesquisador extends Usuario {
 	public Pesquisador(Usuario _usuario) {
 		super(_usuario.id, _usuario.nome, _usuario.login, _usuario.senha, _usuario.tel, _usuario.email, _usuario.dataCadastro, _usuario.tipoUsuario);
 	}
-
+	*/
 	public String getInstituto() {
 		return instituto;
 	}

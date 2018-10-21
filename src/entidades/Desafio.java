@@ -60,6 +60,10 @@ public class Desafio extends ModeloBase {
 	@OneToMany(mappedBy = "desafio", fetch = FetchType.LAZY)
 	private List<Resposta> respostas;
 	
+	@ManyToOne
+	@JoinColumn(name = "reconstruction_id")
+	private Reconstrucao recontrucao;
+	
 	public Desafio() {
 		this.id = new Long(0);
 		this.respostas = new ArrayList<Resposta>();
