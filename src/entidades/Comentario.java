@@ -47,14 +47,6 @@ public class Comentario extends ModeloBase implements Serializable {
 		this.id = id;
 	}
 
-	public Date getDtRegister() {
-		return this.dataRegistro;
-	}
-
-	public void setDtRegister(Date dtRegister) {
-		this.dataRegistro = dtRegister;
-	}
-
 	public Resposta getResposta() {
 		return resposta;
 	}
@@ -80,7 +72,7 @@ public class Comentario extends ModeloBase implements Serializable {
 	}
 
 	public String getText() {
-		return this.text;
+		return text;
 	}
 
 	public void setText(String text) {

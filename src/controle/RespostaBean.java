@@ -1,6 +1,6 @@
 package controle;
 
-import java.sql.Connection;
+//import java.sql.Connection;
 import java.util.Date;
 import java.util.List;
 
@@ -9,14 +9,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.model.ListDataModel;
 
-import org.apache.commons.mail.EmailException;
+//import org.apache.commons.mail.EmailException;
 import org.primefaces.event.FlowEvent;
 
-import dao.RespostaDAO;
-import modelo.Pesquisador;
-import modelo.Resposta;
-import util.EmailUtil;
-import util.FabricaConexao;
+import dados.RespostaDAO;
+import entidades.Pesquisador;
+import entidades.Resposta;
+//import util.EmailUtil;
+//import util.FabricaConexao;
 import util.JSFUtil;
 
 /**
@@ -61,7 +61,7 @@ public class RespostaBean {
 	}
 
 	public void setRespostas(ListDataModel<Resposta> respostas) {
-		respostas = respostas;
+		this.respostas = respostas;
 	}
 	
 	public boolean isSkip() {
@@ -76,13 +76,13 @@ public class RespostaBean {
 		try {
 			this.resposta.setDataCadastro(new Date());
 
-			FabricaConexao fabrica = new FabricaConexao();
-			Connection conexao = fabrica.fazerConexao();
+			//FabricaConexao fabrica = new FabricaConexao();
+			//Connection conexao = fabrica.fazerConexao();
 			
-			this.resposta.setDesafio(desafioBean.desafio.getId());
+			this.resposta.setDesafio(desafioBean.desafio);
 			this.resposta.setPesquisador((Pesquisador)desafioBean.desafio.getUsuario());
 
-			RespostaDAO dao = new RespostaDAO(conexao);
+			RespostaDAO dao = new RespostaDAO();
 			dao.Inserir(this.resposta);
 			
 			//EnviarEmail();
@@ -91,7 +91,7 @@ public class RespostaBean {
 
 			this.respostas = new ListDataModel<Resposta>(listaRespostas);
 
-			fabrica.fecharConexao();
+			//fabrica.fecharConexao();
 
 			JSFUtil.adicionarMensagemSucesso("Resposta cadastrado com sucesso!");
 			
@@ -107,12 +107,12 @@ public class RespostaBean {
 		
 		try {
 			
-			FabricaConexao fabrica = new FabricaConexao();
-			Connection conexao = fabrica.fazerConexao();
+			//FabricaConexao fabrica = new FabricaConexao();
+			//Connection conexao = fabrica.fazerConexao();
 
-			RespostaDAO dao = new RespostaDAO(conexao);
+			//RespostaDAO dao = new RespostaDAO();
 			
-			this.resposta.setId(dao.PegarID());
+			//this.resposta.setId(dao.PegarID());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
