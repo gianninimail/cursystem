@@ -21,10 +21,10 @@ import org.primefaces.model.diagram.endpoint.EndPointAnchor;
 import org.primefaces.model.diagram.endpoint.RectangleEndPoint;
 import org.primefaces.model.diagram.overlay.ArrowOverlay;
 
-import dao.ReacaoDAO;
-import modelo.Metabolito;
-import modelo.Reacao;
-import util.FabricaConexao;
+import dados.ReacaoDAO;
+import entidades.Componente;
+import entidades.Reacao;
+//import util.FabricaConexao;
 
 //@Scope(value = WebApplicationContext.SCOPE_SESSION)
 @ManagedBean
@@ -94,7 +94,7 @@ public class GrafoBean implements Serializable {
     
     public void Conectar(ConnectEvent event) {
         if(!suspenderEvento) {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Conectado", 
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Connected", 
                     "De " + event.getSourceElement().getData()+ " Para " + event.getTargetElement().getData());
          
             FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -107,11 +107,11 @@ public class GrafoBean implements Serializable {
     }
     
     public void MudarConexao(ConnectionChangeEvent event) {
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Conexão Trocada", 
-                    "Saída Original:" + event.getOriginalSourceElement().getData() + 
-                    ", Nova Saída: " + event.getNewSourceElement().getData() + 
-                    ", Entrada Original: " + event.getOriginalTargetElement().getData() + 
-                    ", Nova Entrada: " + event.getNewTargetElement().getData());
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Switched connection", 
+                    "Original Output:" + event.getOriginalSourceElement().getData() + 
+                    ", New Output: " + event.getNewSourceElement().getData() + 
+                    ", Original Entry: " + event.getOriginalTargetElement().getData() + 
+                    ", New Entry: " + event.getNewTargetElement().getData());
          
         FacesContext.getCurrentInstance().addMessage(null, msg);
          
@@ -120,7 +120,7 @@ public class GrafoBean implements Serializable {
     }
     
     public void Desconectar(DisconnectEvent event) {
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Disconectado", 
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Disconnected", 
                     "De " + event.getSourceElement().getData()+ " Para " + event.getTargetElement().getData());
          
         FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -147,16 +147,16 @@ public class GrafoBean implements Serializable {
     private void CarregarListaReacoes(int _idFunc) {
 		try {
 			
-			FabricaConexao fabrica = new FabricaConexao();
-			Connection conexao = fabrica.fazerConexao();
+			//FabricaConexao fabrica = new FabricaConexao();
+			//Connection conexao = fabrica.fazerConexao();
 			
-			ReacaoDAO dao = new ReacaoDAO(conexao);
+			ReacaoDAO dao = new ReacaoDAO();
 			
 			String nomeSubSistema = dao.BuscarNomeSubSistema(Integer.toUnsignedLong(_idFunc));
 			
 			this.listaReactions = dao.listarTodosPorSistemaAndSubSistema(null, nomeSubSistema);
 
-			fabrica.fecharConexao();
+			//fabrica.fecharConexao();
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -206,11 +206,11 @@ public class GrafoBean implements Serializable {
 		        String reacao[];
 		        if (equacaoSemEspacos.contains("-->")) {
 		        	reacao = equacaoSemEspacos.split("-->");
-		        	System.out.println("reação com: -->");
+		        	System.out.println("reaï¿½ï¿½o com: -->");
 				} 
 		        else {
 		        	reacao = equacaoSemEspacos.split("<==>");
-		        	System.out.println("reação com: <==>");
+		        	System.out.println("reaï¿½ï¿½o com: <==>");
 				}
 		        
 		        System.out.println(equacaoSemEspacos);
@@ -222,7 +222,7 @@ public class GrafoBean implements Serializable {
 		        	System.out.println(comp);
 		        	Element compExistente = BuscarMetabolitoNoGrafo(comp);
 		        	if (compExistente != null) {
-						System.out.println("Já está incluído: " + comp);
+						System.out.println("Jï¿½ estï¿½ incluï¿½do: " + comp);
 						org.primefaces.model.diagram.Connection cn = new org.primefaces.model.diagram.Connection(compExistente.getEndPoints().get(1), el.getEndPoints().get(0));
 				        this.modelo.connect(cn);
 					}
@@ -262,7 +262,7 @@ public class GrafoBean implements Serializable {
 		        	System.out.println(comp);
 		        	Element compExistente = BuscarMetabolitoNoGrafo(comp);
 			        if (compExistente != null) {
-						System.out.println("Já está incluído: " + comp);
+						System.out.println("Jï¿½ estï¿½ incluï¿½do: " + comp);
 						org.primefaces.model.diagram.Connection cn = new org.primefaces.model.diagram.Connection(el.getEndPoints().get(1), compExistente.getEndPoints().get(0));
 				        this.modelo.connect(cn);
 				        //org.primefaces.model.diagram.overlay.LabelOverlay
@@ -297,8 +297,8 @@ public class GrafoBean implements Serializable {
 		        System.out.println("mapeamento");
 		        
 			}
-			System.out.println("Número de reações: " + numR);
-	        System.out.println("Número de metabólitos: " + numM);
+			System.out.println("Nï¿½mero de reaï¿½ï¿½es: " + numR);
+	        System.out.println("Nï¿½mero de metabï¿½litos: " + numM);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

@@ -13,18 +13,18 @@ import org.primefaces.event.FlowEvent;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
-import dao.DesafioDAO;
-import dao.FuncaoSubsistemaDAO;
-import dao.ReacaoDAO;
-import dao.RespostaDAO;
-import modelo.Desafio;
-import modelo.Pesquisador;
-import modelo.Reacao;
-import modelo.Resposta;
-import modelo.Status;
-import modelo.Subsistema;
+import dados.DesafioDAO;
+import dados.FuncaoSubsistemaDAO;
+import dados.ReacaoDAO;
+import dados.RespostaDAO;
+import entidades.Desafio;
+import entidades.Pesquisador;
+import entidades.Reacao;
+import entidades.Resposta;
+import entidades.Status;
+import entidades.Subsistema;
 import util.EmailUtil;
-import util.FabricaConexao;
+//import util.FabricaConexao;
 import util.JSFUtil;
 
 @ManagedBean
@@ -221,7 +221,7 @@ public class DesafioBean {
 
 			fabrica.fecharConexao();
 
-			JSFUtil.adicionarMensagemSucesso("Desafio excluído com sucesso!");
+			JSFUtil.adicionarMensagemSucesso("Desafio excluï¿½do com sucesso!");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -388,11 +388,11 @@ public class DesafioBean {
 
 			fabrica.fecharConexao();
 
-			JSFUtil.adicionarMensagemSucesso("Resposta excluída com sucesso!");
+			JSFUtil.adicionarMensagemSucesso("Resposta excluï¿½da com sucesso!");
 			
 		} catch (MySQLIntegrityConstraintViolationException e) {
 			e.printStackTrace();
-			JSFUtil.adicionarMensagemErro("Verifique se não existe comentários cadastrados para esse resposta");
+			JSFUtil.adicionarMensagemErro("Verifique se nï¿½o existe comentï¿½rios cadastrados para esse resposta");
 		} catch (Exception e) {
 			e.printStackTrace();
 			JSFUtil.adicionarMensagemErro(e.getMessage());
@@ -439,8 +439,8 @@ public class DesafioBean {
 			String titulo = "Novo desafio Cadastrado";
 			String msg = "Dados do Desafio: \n"
 				+"\nTitulo do desafio: " + this.desafio.getTitulo()
-				+ "\nDescrição do desafio: " + this.desafio.getDesc()
-				+ "\nReação envolvida no desafio: " + this.desafio.getReacao().getAbbreviation() + "  |--|  Eq:" + this.desafio.getReacao().getEquation()
+				+ "\nDescriï¿½ï¿½o do desafio: " + this.desafio.getDesc()
+				+ "\nReaï¿½ï¿½o envolvida no desafio: " + this.desafio.getReacao().getAbbreviation() + "  |--|  Eq:" + this.desafio.getReacao().getEquation()
 				+ "";
 			
 			EmailUtil.enviaEmail(titulo, msg, this.desafio.getUsuario().getEmail());

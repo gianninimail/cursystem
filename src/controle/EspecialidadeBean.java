@@ -1,15 +1,14 @@
 package controle;
 
-import java.sql.Connection;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
-import dao.EspecialidadeDAO;
-import modelo.Especialidade;
+import dados.EspecialidadeDAO;
+import entidades.Especialidade;
 import util.BeanBase;
-import util.FabricaConexao;
+//import util.FabricaConexao;
 import util.JSFUtil;
 
 @SuppressWarnings("serial")
@@ -43,13 +42,13 @@ public class EspecialidadeBean extends BeanBase {
 	@PostConstruct
 	public void PreparaPesquisa() {
 		try {
-			FabricaConexao fabrica = new FabricaConexao();
-			Connection conexao = fabrica.fazerConexao();
+			//FabricaConexao fabrica = new FabricaConexao();
+			//Connection conexao = fabrica.fazerConexao();
 
-			EspecialidadeDAO dao = new EspecialidadeDAO(conexao);
+			EspecialidadeDAO dao = new EspecialidadeDAO();
 			this.especialidades = dao.listarTodos();
 
-			fabrica.fecharConexao();
+			//fabrica.fecharConexao();
 						
 		} catch (Exception e) {
 			e.printStackTrace();

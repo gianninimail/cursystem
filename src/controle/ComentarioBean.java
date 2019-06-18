@@ -109,20 +109,20 @@ public class ComentarioBean {
 	public void CadastrarComentario() {
 		try {
 			
-			this.comentario.setDataCadastro(new Date());
+			this.comentario.setDataRegistro(new Date());
 			//this.comentario.setPesquisador(new Pesquisador());
 			this.comentario.setResposta((Resposta)this.noSelecionado.getData());
 			
-			FabricaConexao fabrica = new FabricaConexao();
-			Connection conexao = fabrica.fazerConexao();
+			//FabricaConexao fabrica = new FabricaConexao();
+			//Connection conexao = fabrica.fazerConexao();
 
-			ComentarioDAO dao = new ComentarioDAO(conexao);
+			ComentarioDAO dao = new ComentarioDAO();
 			dao.Inserir(this.comentario);
 
 			//this.listaComentarios = dao.listarTodos();
 			CarregarComentarioDeResposta();
 
-			fabrica.fecharConexao();
+			//fabrica.fecharConexao();
 
 			JSFUtil.adicionarMensagemSucesso("Coment�rio cadastrado com sucesso!");
 			
@@ -137,15 +137,15 @@ public class ComentarioBean {
 		try {
 			if(this.noSelecionado != null) {
 				if (this.noSelecionado.getData() instanceof Resposta) {
-					FabricaConexao fabrica = new FabricaConexao();
-					Connection conexao = fabrica.fazerConexao();
+					//FabricaConexao fabrica = new FabricaConexao();
+					//Connection conexao = fabrica.fazerConexao();
 			
 					Resposta resposta = (Resposta)noSelecionado.getData();
-					ComentarioDAO dao = new ComentarioDAO(conexao);
+					ComentarioDAO dao = new ComentarioDAO();
 					
 					this.listaComentarios = dao.TodasComentariosDaResposta(resposta);
 					
-					fabrica.fecharConexao();
+					//fabrica.fecharConexao();
 				}
 				else {
 					this.listaComentarios = null;

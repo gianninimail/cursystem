@@ -12,11 +12,12 @@ import javax.faces.model.ListDataModel;
 import org.primefaces.event.TabChangeEvent;
 //import org.primefaces.event.TabCloseEvent;
 
-import dao.PesquisadorDAO;
-import modelo.Pesquisador;
-import modelo.Usuario;
-import util.FabricaConexao;
+import dados.PesquisadorDAO;
+import entidades.Pesquisador;
+import entidades.Usuario;
+//import util.FabricaConexao;
 import util.JSFUtil;
+import util.TipoUsuario;
 
 @ManagedBean
 public class PesquisadorBean implements Serializable {
@@ -90,33 +91,33 @@ public class PesquisadorBean implements Serializable {
 		this.listaUsuariosParaPesquisadores = listaUsuariosParaPesquisadores;
 	}
 
-	// MÉTODOS DAO - ACESSO AO BANCO DE DADOS
+	// Mï¿½TODOS DAO - ACESSO AO BANCO DE DADOS
 	public void CadastrarPesquisador() {
 
 		try {
 
-			FabricaConexao fabrica = new FabricaConexao();
-			Connection conexao = fabrica.fazerConexao();
+			//FabricaConexao fabrica = new FabricaConexao();
+			//Connection conexao = fabrica.fazerConexao();
 
-			PesquisadorDAO dao = new PesquisadorDAO(conexao);
+			PesquisadorDAO dao = new PesquisadorDAO();
 
 			if (this.ehNovoPesquisador) {
 
 				this.pesquisador.setDataCadastro(new Date());
-				this.pesquisador.setTipoUsuario(2);
-				dao.InserirNovo(this.pesquisador);
+				this.pesquisador.setTipoUsuario(TipoUsuario.PESQUISADOR);
+				//dao.InserirNovo(this.pesquisador);
 			}
 			if (!this.ehNovoPesquisador) {
 
 				this.pesquisador.setUsuario(this.usuario);
-				dao.InserirExiste(this.pesquisador);
+				//dao.InserirExiste(this.pesquisador);
 			}
 
 			this.listaPesquisadores = dao.listarTodos();
 
 			this.pesquisadores = new ListDataModel<Pesquisador>(listaPesquisadores);
 
-			fabrica.fecharConexao();
+			//fabrica.fecharConexao();
 
 			JSFUtil.adicionarMensagemSucesso("Pesquisador cadastrado com sucesso!");
 
@@ -131,12 +132,12 @@ public class PesquisadorBean implements Serializable {
 
 		try {
 
-			FabricaConexao fabrica = new FabricaConexao();
-			Connection conexao = fabrica.fazerConexao();
+			//FabricaConexao fabrica = new FabricaConexao();
+			//Connection conexao = fabrica.fazerConexao();
 
-			PesquisadorDAO dao = new PesquisadorDAO(conexao);
+			//PesquisadorDAO dao = new PesquisadorDAO();
 
-			this.pesquisador.setId(dao.PegarProximoID());
+			//this.pesquisador.setId(dao.PegarProximoID());
 			
 			AtualizarListaUsuarioParaPesquisadores();
 
@@ -149,19 +150,19 @@ public class PesquisadorBean implements Serializable {
 	public void ExcluirPesquisador() {
 		try {
 
-			FabricaConexao fabrica = new FabricaConexao();
-			Connection conexao = fabrica.fazerConexao();
+			//FabricaConexao fabrica = new FabricaConexao();
+			//Connection conexao = fabrica.fazerConexao();
 
-			PesquisadorDAO dao = new PesquisadorDAO(conexao);
+			PesquisadorDAO dao = new PesquisadorDAO();
 			dao.Excluir(this.pesquisador);
 
 			this.listaPesquisadores = dao.listarTodos();
 
 			this.pesquisadores = new ListDataModel<Pesquisador>(listaPesquisadores);
 
-			fabrica.fecharConexao();
+			//fabrica.fecharConexao();
 
-			JSFUtil.adicionarMensagemSucesso("Pesquisador excluído com sucesso!");
+			JSFUtil.adicionarMensagemSucesso("Pesquisador excluï¿½do com sucesso!");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -176,19 +177,19 @@ public class PesquisadorBean implements Serializable {
 	public void EditarPesquisador() {
 		try {
 
-			FabricaConexao fabrica = new FabricaConexao();
-			Connection conexao = fabrica.fazerConexao();
+			//FabricaConexao fabrica = new FabricaConexao();
+			//Connection conexao = fabrica.fazerConexao();
 
-			PesquisadorDAO dao = new PesquisadorDAO(conexao);
+			PesquisadorDAO dao = new PesquisadorDAO();
 			dao.Editar(this.pesquisador);
 
 			this.listaPesquisadores = dao.listarTodos();
 
 			this.pesquisadores = new ListDataModel<Pesquisador>(listaPesquisadores);
 
-			fabrica.fecharConexao();
+			//fabrica.fecharConexao();
 
-			JSFUtil.adicionarMensagemSucesso("Usuário editado com sucesso!");
+			JSFUtil.adicionarMensagemSucesso("Usuï¿½rio editado com sucesso!");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -204,33 +205,33 @@ public class PesquisadorBean implements Serializable {
 
 		try {
 
-			FabricaConexao fabrica = new FabricaConexao();
-			Connection conexao = fabrica.fazerConexao();
+			//FabricaConexao fabrica = new FabricaConexao();
+			//Connection conexao = fabrica.fazerConexao();
 
-			PesquisadorDAO dao = new PesquisadorDAO(conexao);
+			PesquisadorDAO dao = new PesquisadorDAO();
 
 			this.listaUsuariosParaPesquisadores = dao.listarUsuariosParaPesquisador();
 
-			fabrica.fecharConexao();
+			//fabrica.fecharConexao();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			JSFUtil.adicionarMensagemErro(e.getMessage());
 		}
 	}
-	// FIM DOS MÉTODOS DAO - ACESSO AO BANCO DE DADOS
+	// FIM DOS METODOS DAO - ACESSO AO BANCO DE DADOS
 
-	// MÉTODOS PARA MANIPULAÇÃO DA PÁGINA - FRONT END
+	// METODOS PARA MANIPULACAO DA PAGINA - FRONT END
 	@PostConstruct
 	public void PreparaPesquisa() {
 		try {
-			FabricaConexao fabrica = new FabricaConexao();
-			Connection conexao = fabrica.fazerConexao();
+			//FabricaConexao fabrica = new FabricaConexao();
+			//Connection conexao = fabrica.fazerConexao();
 
-			PesquisadorDAO dao = new PesquisadorDAO(conexao);
+			PesquisadorDAO dao = new PesquisadorDAO();
 			this.listaPesquisadores = dao.listarTodos();
 
-			fabrica.fecharConexao();
+			//fabrica.fecharConexao();
 
 			pesquisadores = new ListDataModel<Pesquisador>(listaPesquisadores);
 			
@@ -261,5 +262,5 @@ public class PesquisadorBean implements Serializable {
 	// System.out.println(nomeAba);
 	// }
 
-	// FIM DOS MÉTODOS PARA MANIPULAÇÃO DA PÁGINA - FRONT END
+	// FIM DOS Mï¿½TODOS PARA MANIPULAï¿½ï¿½O DA Pï¿½GINA - FRONT END
 }
